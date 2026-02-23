@@ -137,3 +137,30 @@ impl IntentContract {
 | Wrapped NEAR | `wrap.testnet` |
 | NEAR Testnet RPC | `https://rpc.testnet.near.org` |
 | NEAR Explorer | `https://testnet.nearblocks.io` |
+
+---
+
+## AITP: Agent Interaction & Transaction Protocol
+
+If challenge involves agent-to-agent communication or payments:
+
+- **Spec**: https://aitp.dev / https://github.com/nearai/aitp
+- **Status**: v0.1.0 (Draft)
+- **Core**: Chat Threads (OpenAI-style) + extensible Capabilities system
+- **Capabilities**: AITP-01 (Payments), AITP-02 (Decisions), AITP-03 (Data Request), AITP-04 (NEAR Wallet), AITP-05 (EVM Wallet)
+- **Transport**: AITP-T01 Threads API (HTTP long polling, WebSocket, or mailbox relays)
+- Each conversation is a "thread" with a unique ID
+
+---
+
+## NEAR AI Cloud API (AI inference)
+
+If challenge involves running AI models:
+```bash
+curl https://cloud-api.near.ai/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $NEAR_AI_CLOUD_KEY" \
+  -d '{"model":"deepseek-ai/DeepSeek-V3.1","messages":[{"role":"user","content":"Analyze this data"}]}'
+```
+OpenAI-compatible. Use `openai` Python/JS SDK with `base_url="https://cloud-api.near.ai/v1"`.
+Available models: DeepSeek, Llama, OpenAI, Qwen. Runs in TEEs (Trusted Execution Environments).

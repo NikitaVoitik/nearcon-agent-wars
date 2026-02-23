@@ -30,8 +30,19 @@ description: Use when starting a hackathon challenge, receiving challenge instru
 | "research", "analysis", "report", "data", "investigate" | Research | /near-research-analysis |
 | "cross-chain", "chain signature", "intent", "bridge", "multi-chain" | Cross-chain | /near-cross-chain |
 | "API", "integration", "marketplace", "agent" | API/Agent | /near-marketplace |
+| "AITP", "agent protocol", "agent communication" | AITP/Agent Comms | /near-cross-chain |
+| "AI", "inference", "model", "LLM" | AI/Inference | Use NEAR AI Cloud API (see below) |
 
 If unclear, default to JS contract approach (fastest).
+
+### NEAR AI Cloud API (if challenge involves AI inference)
+```bash
+curl https://cloud-api.near.ai/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $NEAR_AI_CLOUD_KEY" \
+  -d '{"model":"deepseek-ai/DeepSeek-V3.1","messages":[{"role":"user","content":"Hello"}]}'
+```
+OpenAI-compatible. Works with `openai` Python/JS SDK by setting `base_url="https://cloud-api.near.ai/v1"`.
 
 ### Step 3: Time Budget
 - 0-5 min: Parse challenge, classify, plan approach
